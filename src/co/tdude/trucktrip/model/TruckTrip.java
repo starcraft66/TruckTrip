@@ -3,9 +3,9 @@ package co.tdude.trucktrip.model;
 import java.util.Date;
 
 public class TruckTrip {
-    protected String truckNumber;
-    protected String driverNumber;
-    protected String coDriverNumber;
+    protected int truckNumber;
+    protected int driverNumber;
+    protected int coDriverNumber;
     protected int tripNumber;
     protected Date departureTime;
     protected Date arrivalTime;
@@ -17,7 +17,7 @@ public class TruckTrip {
     protected String model;
     protected String color;
 
-    public TruckTrip(String truckNumber, String driverNumber, String coDriverNumber, int tripNumber, Date departureTime, Date arrivalTime, double mileage, double gasUsed, double gasPurchased, double gasPrice, String state, String model, String color) {
+    public TruckTrip(int truckNumber, int driverNumber, int coDriverNumber, int tripNumber, Date departureTime, Date arrivalTime, double mileage, double gasUsed, double gasPurchased, double gasPrice, String state, String model, String color) {
         this.truckNumber = truckNumber;
         this.driverNumber = driverNumber;
         this.coDriverNumber = coDriverNumber;
@@ -33,27 +33,27 @@ public class TruckTrip {
         this.color = color;
     }
 
-    public String getTruckNumber() {
+    public int getTruckNumber() {
         return truckNumber;
     }
 
-    public void setTruckNumber(String truckNumber) {
+    public void setTruckNumber(int truckNumber) {
         this.truckNumber = truckNumber;
     }
 
-    public String getDriverNumber() {
+    public int getDriverNumber() {
         return driverNumber;
     }
 
-    public void setDriverNumber(String driverNumber) {
+    public void setDriverNumber(int driverNumber) {
         this.driverNumber = driverNumber;
     }
 
-    public String getCoDriverNumber() {
+    public int getCoDriverNumber() {
         return coDriverNumber;
     }
 
-    public void setCoDriverNumber(String coDriverNumber) {
+    public void setCoDriverNumber(int coDriverNumber) {
         this.coDriverNumber = coDriverNumber;
     }
 
