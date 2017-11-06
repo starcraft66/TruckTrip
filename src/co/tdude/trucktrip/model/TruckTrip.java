@@ -17,6 +17,10 @@ public class TruckTrip {
     protected String model;
     protected String color;
 
+    public TruckTrip() {
+
+    }
+
     public TruckTrip(int truckNumber, int driverNumber, int coDriverNumber, int tripNumber, Date departureTime, Date arrivalTime, double mileage, double gasUsed, double gasPurchased, double gasPrice, String state, String model, String color) {
         this.truckNumber = truckNumber;
         this.driverNumber = driverNumber;
