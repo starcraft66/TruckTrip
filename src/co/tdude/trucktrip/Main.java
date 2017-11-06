@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main extends Application{
+    final UserDao dao = new UserDao();
 
     private TableView table = new TableView();
     private final ObservableList<TruckTrip> data =
@@ -159,7 +160,7 @@ public class Main extends Application{
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 try {
-                    data.add(new TruckTrip(
+                    TruckTrip newTrip = new TruckTrip(
                             Integer.parseInt(addTruckNumber.getText()),
                             Integer.parseInt(addDriverNumber.getText()),
                             Integer.parseInt(addCoDriverNumber.getText()),
@@ -173,7 +174,9 @@ public class Main extends Application{
                             addState.getText(),
                             addModel.getText(),
                             addColor.getText()
-                    ));
+                    );
+                    dao.addTrip(newTrip);
+                    data.setAll(dao.getAllTrips());
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
