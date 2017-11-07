@@ -196,6 +196,15 @@ public class Main extends Application{
             }
         });
 
+        final Button summary = new Button("SummaryReport");
+        summary.setOnAction(e -> {
+            stage.setScene();
+            table.setItems(data);
+        });
+
+
+        final Button exception = new Button("Exception");
+
         hb.getChildren().addAll(addTruckNumber, addDriverNumber, addCoDriverNumber, addTripNumber, addDepartureTime, addReturnTime, addMileage, addGasUsed, addGasPurchased, addGasPrice, addState, addModel, addColor, addButton);
         hb.setSpacing(3);
 

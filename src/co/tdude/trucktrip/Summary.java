@@ -27,6 +27,7 @@ public class Summary extends Application{
             FXCollections.observableArrayList(
 
             );
+    private Scene summaryScene;
 
     final HBox hb = new HBox();
 
@@ -36,7 +37,7 @@ public class Summary extends Application{
 
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(new Group());
+        summaryScene = new Scene(new Group());
         stage.setTitle("Summary Trip");
         stage.setWidth(1070);
         stage.setHeight(500);
@@ -156,10 +157,14 @@ public class Summary extends Application{
         vbox.setPadding(new Insets(10, 0, 0, 10));
         vbox.getChildren().addAll(label, table, hb);
 
-        ((Group) scene.getRoot()).getChildren().addAll(vbox);
+        ((Group) summaryScene.getRoot()).getChildren().addAll(vbox);
 
-        stage.setScene(scene);
+        stage.setScene(summaryScene);
         stage.show();
+    }
+
+    public Scene getScene(){
+        return  summaryScene;
     }
 
 }

@@ -33,6 +33,18 @@ public class TruckTrip {
         this.totalExpense = totalExpense;
     }
 
+    public TruckTrip(int truckNumber, int driverNumber, int tripNumber, double mileage, double gasUsed, double gasPurchased, double gasPrice, double totalExpense, String state) {
+        this.truckNumber = truckNumber;
+        this.driverNumber = driverNumber;
+        this.tripNumber = tripNumber;
+        this.mileage = mileage;
+        this.gasUsed = gasUsed;
+        this.gasPurchased = gasPurchased;
+        this.gasPrice = gasPrice;
+        this.state = state;
+        this.totalExpense = totalExpense;
+    }
+
     public TruckTrip(int truckNumber, int driverNumber, int tripNumber, double gasUsed, double gasPrice, double gasPurchased, double totalExpense, String state) {
         this.truckNumber = truckNumber;
         this.driverNumber = driverNumber;

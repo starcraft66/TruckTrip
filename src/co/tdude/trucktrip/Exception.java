@@ -21,12 +21,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Exception extends Application{
+    final UserDao dao = new UserDao();
 
     private TableView table = new TableView();
     private final ObservableList<TruckTrip> data =
             FXCollections.observableArrayList(
-
+                    dao.getExceptionTrips()
             );
+
+    private Scene scene;
 
     final HBox hb = new HBox();
 
@@ -36,7 +39,7 @@ public class Exception extends Application{
 
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(new Group());
+        scene = new Scene(new Group());
         stage.setTitle("Summary Trip");
         stage.setWidth(1070);
         stage.setHeight(500);
@@ -106,12 +109,6 @@ public class Exception extends Application{
         final TextField addTripNumber = new TextField();
         addTripNumber.setMaxWidth(driverNumberCol.getPrefWidth());
         addTripNumber.setPromptText("Trip Number:");
-        final TextField addDepartureTime = new TextField();
-        addDepartureTime.setMaxWidth(driverNumberCol.getPrefWidth());
-        addDepartureTime.setPromptText("Departure time:");
-        final TextField addReturnTime = new TextField();
-        addReturnTime.setMaxWidth(driverNumberCol.getPrefWidth());
-        addReturnTime.setPromptText("Return time:");
         final TextField addMileage = new TextField();
         addMileage.setMaxWidth(driverNumberCol.getPrefWidth());
         addMileage.setPromptText("Mileage:");
@@ -143,9 +140,10 @@ public class Exception extends Application{
                             Integer.parseInt(addTruckNumber.getText()),
                             Integer.parseInt(addDriverNumber.getText()),
                             Integer.parseInt(addTripNumber.getText()),
-                            df.parse(addDepartureTime.getText()),
-                            df.parse(addReturnTime.getText()),
                             Double.parseDouble(addMileage.getText()),
+                            Double.parseDouble(addGasUsed.getText()),
+                            Double.parseDouble(addGasPurchased.getText()),
+                            Double.parseDouble(addGasPrice.getText()),
                             Double.parseDouble(addTotalExpenses.getText()),
                             addState.getText()
                     ));
@@ -155,15 +153,13 @@ public class Exception extends Application{
                 addTruckNumber.clear();
                 addDriverNumber.clear();
                 addTripNumber.clear();
-                addDepartureTime.clear();
-                addReturnTime.clear();
                 addMileage.clear();
                 addTotalExpenses.clear();
                 addState.clear();
             }
         });
 
-        hb.getChildren().addAll(addTruckNumber, addDriverNumber,addTripNumber, addDepartureTime, addReturnTime, addMileage, addTotalExpenses, addState, addButton);
+        hb.getChildren().addAll(addTruckNumber, addDriverNumber,addTripNumber,addMileage,addGasUsed, addGasPurchased, addGasPrice, addTotalExpenses, addState, addButton);
         hb.setSpacing(3);
 
         final VBox vbox = new VBox();
@@ -175,6 +171,10 @@ public class Exception extends Application{
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    public Scene getScene(){
+        return scene;
     }
 
 }

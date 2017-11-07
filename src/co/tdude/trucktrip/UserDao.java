@@ -109,6 +109,35 @@ public class UserDao {
         return trips;
     }
 
+    public List<TruckTrip> getExceptionTrips() {
+        List<TruckTrip> trips = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from trips where (gasPurchased*gasPrice)>1000");
+            while (rs.next()) {
+                TruckTrip trip = new TruckTrip();
+                trip.setTruckNumber(rs.getInt("truckNumber"));
+                trip.setDriverNumber(rs.getInt("driverNumber"));
+                trip.setCoDriverNumber(rs.getInt("coDriverNumber"));
+                trip.setTripNumber(rs.getInt("tripNumber"));
+                trip.setDepartureTime(rs.getDate("departureTime"));
+                trip.setArrivalTime(rs.getDate("arrivalTime"));
+                trip.setMileage(rs.getDouble("mileage"));
+                trip.setGasUsed(rs.getDouble("gasUsed"));
+                trip.setGasPurchased(rs.getDouble("gasPurchased"));
+                trip.setGasPrice(rs.getDouble("gasPrice"));
+                trip.setState(rs.getString("state"));
+                trip.setModel(rs.getString("model"));
+                trip.setColor(rs.getString("color"));
+                trips.add(trip);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return trips;
+    }
+
     public TruckTrip getUserById(int userId) {
         TruckTrip trip = new TruckTrip();
         try {
