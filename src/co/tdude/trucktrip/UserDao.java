@@ -21,16 +21,16 @@ public class UserDao {
                                                             "mileage,gasUsed,gasPurchased,gasPrice,state,model,color) " +
                                                             "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, )");
             // Parameters start with 1
-            preparedStatement.setString(1,  Integer.toString(trip.getTripNumber()));
-            preparedStatement.setString(2, Integer.toString(trip.getTruckNumber()));
-            preparedStatement.setString(3, Integer.toString(trip.getDriverNumber()));
-            preparedStatement.setString(4, Integer.toString(trip.getCoDriverNumber()));
-            preparedStatement.setDate(5, (Date) trip.getDepartureTime());
-            preparedStatement.setDate(6, (Date) trip.getArrivalTime());
-            preparedStatement.setString(7,  Double.toString(trip.getMileage()));
-            preparedStatement.setString(8,  Double.toString(trip.getGasUsed()));
-            preparedStatement.setString(9,  Double.toString(trip.getGasPurchased()));
-            preparedStatement.setString(10,  Double.toString(trip.getGasPrice()));
+            preparedStatement.setInt(1,  trip.getTripNumber());
+            preparedStatement.setInt(2, trip.getTruckNumber());
+            preparedStatement.setInt(3, trip.getDriverNumber());
+            preparedStatement.setInt(4, trip.getCoDriverNumber());
+            preparedStatement.setDate(5, new java.sql.Date(trip.getDepartureTime().getTime()));
+            preparedStatement.setDate(6, new java.sql.Date(trip.getDepartureTime().getTime()));
+            preparedStatement.setDouble(7,  trip.getMileage());
+            preparedStatement.setDouble(8,  trip.getGasUsed());
+            preparedStatement.setDouble(9,  trip.getGasPurchased());
+            preparedStatement.setDouble(10,  trip.getGasPrice());
             preparedStatement.setString(11,  trip.getState());
             preparedStatement.setString(12,  trip.getModel());
             preparedStatement.setString(13,  trip.getColor());
@@ -61,16 +61,16 @@ public class UserDao {
                                             "mileage=?,gasUsed=?,gasPurchased=?,gasPrice=?,state=?,model=?,color=?) " +
                                             "where tripNumber=?");
             // Parameters start with 1
-            preparedStatement.setString(1,  Integer.toString(trip.getTripNumber()));
-            preparedStatement.setString(2, Integer.toString(trip.getTruckNumber()));
-            preparedStatement.setString(3, Integer.toString(trip.getDriverNumber()));
-            preparedStatement.setString(4, Integer.toString(trip.getCoDriverNumber()));
+            preparedStatement.setInt(1,  trip.getTripNumber());
+            preparedStatement.setInt(2, trip.getTruckNumber());
+            preparedStatement.setInt(3, trip.getDriverNumber());
+            preparedStatement.setInt(4, trip.getCoDriverNumber());
             preparedStatement.setDate(5, (Date) trip.getDepartureTime());
             preparedStatement.setDate(6, (Date) trip.getArrivalTime());
-            preparedStatement.setString(7,  Double.toString(trip.getMileage()));
-            preparedStatement.setString(8,  Double.toString(trip.getGasUsed()));
-            preparedStatement.setString(9,  Double.toString(trip.getGasPurchased()));
-            preparedStatement.setString(10,  Double.toString(trip.getGasPrice()));
+            preparedStatement.setDouble(7,  trip.getMileage());
+            preparedStatement.setDouble(8,  trip.getGasUsed());
+            preparedStatement.setDouble(9,  trip.getGasPurchased());
+            preparedStatement.setDouble(10,  trip.getGasPrice());
             preparedStatement.setString(11,  trip.getState());
             preparedStatement.setString(12,  trip.getModel());
             preparedStatement.setString(13,  trip.getColor());
