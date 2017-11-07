@@ -19,7 +19,7 @@ public class UserDao {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("insert into trips(tripNumber,truckNumber,driverNumber,coDriverNumber,departureTime,arrivalTime," +
                                                             "mileage,gasUsed,gasPurchased,gasPrice,state,model,color) " +
-                                                            "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, )");
+                                                            "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             // Parameters start with 1
             preparedStatement.setInt(1,  trip.getTripNumber());
             preparedStatement.setInt(2, trip.getTruckNumber());
@@ -58,7 +58,7 @@ public class UserDao {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("update trips set tripNumber=?,truckNumber=?,driverNumber=?,coDriverNumber=?,departureTime=?,arrivalTime=?," +
-                                            "mileage=?,gasUsed=?,gasPurchased=?,gasPrice=?,state=?,model=?,color=?) " +
+                                            "mileage=?,gasUsed=?,gasPurchased=?,gasPrice=?,state=?,model=?,color=? " +
                                             "where tripNumber=?");
             // Parameters start with 1
             preparedStatement.setInt(1,  trip.getTripNumber());

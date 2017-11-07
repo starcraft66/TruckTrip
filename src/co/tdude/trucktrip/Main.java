@@ -26,7 +26,7 @@ public class Main extends Application{
     private TableView table = new TableView();
     private final ObservableList<TruckTrip> data =
             FXCollections.observableArrayList(
-
+                    dao.getAllTrips()
             );
 
     final HBox hb = new HBox();
@@ -39,7 +39,7 @@ public class Main extends Application{
     public void start(Stage stage) {
         Scene scene = new Scene(new Group());
         stage.setTitle("Truck Trip");
-        stage.setWidth(1070);
+        stage.setWidth(1320);
         stage.setHeight(500);
 
         final Label label = new Label("Truck Trip");
