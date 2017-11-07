@@ -134,7 +134,7 @@ public class Summary extends Application{
                             Double.parseDouble(addTotalExpenses.getText()),
                             addState.getText()
                     ));
-                } catch (Exception ex) {
+                } catch (java.lang.Exception ex) {
                     ex.printStackTrace();
                 }
                 addTruckNumber.clear();

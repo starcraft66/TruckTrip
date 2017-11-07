@@ -177,7 +177,7 @@ public class Main extends Application{
                     );
                     dao.addTrip(newTrip);
                     data.setAll(dao.getAllTrips());
-                } catch (Exception ex) {
+                } catch (java.lang.Exception ex) {
                     ex.printStackTrace();
                 }
                 addTruckNumber.clear();
