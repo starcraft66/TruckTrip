@@ -16,9 +16,32 @@ public class TruckTrip {
     protected String state;
     protected String model;
     protected String color;
+    protected double totalExpense;
 
     public TruckTrip() {
 
+    }
+
+    public TruckTrip(int truckNumber, int driverNumber, int tripNumber, Date departureTime, Date arrivalTime, double mileage, double totalExpense, String state) {
+        this.truckNumber = truckNumber;
+        this.driverNumber = driverNumber;
+        this.tripNumber = tripNumber;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.mileage = mileage;
+        this.state = state;
+        this.totalExpense = totalExpense;
+    }
+
+    public TruckTrip(int truckNumber, int driverNumber, int tripNumber, double gasUsed, double gasPrice, double gasPurchased, double totalExpense, String state) {
+        this.truckNumber = truckNumber;
+        this.driverNumber = driverNumber;
+        this.tripNumber = tripNumber;
+        this.gasUsed = gasUsed;
+        this.gasPurchased = gasPurchased;
+        this.gasPrice = gasPrice;
+        this.state = state;
+        this.totalExpense = totalExpense;
     }
 
     public TruckTrip(int truckNumber, int driverNumber, int coDriverNumber, int tripNumber, Date departureTime, Date arrivalTime, double mileage, double gasUsed, double gasPurchased, double gasPrice, String state, String model, String color) {
@@ -35,6 +58,7 @@ public class TruckTrip {
         this.state = state;
         this.model = model;
         this.color = color;
+        this.totalExpense = gasPrice*gasPurchased;
     }
 
     public int getTruckNumber() {
@@ -140,4 +164,6 @@ public class TruckTrip {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public double getTotalExpense(){return totalExpense;}
 }
