@@ -178,4 +178,8 @@ public class TruckTrip {
     }
 
     public double getTotalExpense(){return totalExpense;}
+
+    public void setTotalExpense(double totalExpense) {
+        this.totalExpense = totalExpense;
+    }
 }

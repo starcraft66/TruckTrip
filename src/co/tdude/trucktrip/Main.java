@@ -22,8 +22,11 @@ import java.util.Date;
 
 public class Main extends Application{
     final UserDao dao = new UserDao();
+    private static Scene scene;
 
     private TableView table = new TableView();
+    private static Exception exRep;
+    private static Summary smRep;
     private final ObservableList<TruckTrip> data =
             FXCollections.observableArrayList(
                     dao.getAllTrips()
@@ -37,7 +40,11 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(new Group());
+        smRep = new Summary();
+        smRep.init(stage);
+        exRep = new Exception();
+        exRep.init(stage);
+        scene = new Scene(new Group());
         stage.setTitle("Truck Trip");
         stage.setWidth(1320);
         stage.setHeight(500);
@@ -198,14 +205,18 @@ public class Main extends Application{
 
         final Button summary = new Button("SummaryReport");
         summary.setOnAction(e -> {
-            stage.setScene();
+            stage.setScene(smRep.getScene());
             table.setItems(data);
         });
 
 
-        final Button exception = new Button("Exception");
+        final Button exception = new Button("ExceptionReport");
+        exception.setOnAction(e -> {
+            stage.setScene(exRep.getScene());
+            table.setItems(data);
+        });
 
-        hb.getChildren().addAll(addTruckNumber, addDriverNumber, addCoDriverNumber, addTripNumber, addDepartureTime, addReturnTime, addMileage, addGasUsed, addGasPurchased, addGasPrice, addState, addModel, addColor, addButton);
+        hb.getChildren().addAll(addTruckNumber, addDriverNumber, addCoDriverNumber, addTripNumber, addDepartureTime, addReturnTime, addMileage, addGasUsed, addGasPurchased, addGasPrice, addState, addModel, addColor, addButton, summary, exception);
         hb.setSpacing(3);
 
         final VBox vbox = new VBox();
@@ -219,4 +230,15 @@ public class Main extends Application{
         stage.show();
     }
 
+    public static Exception getExRep() {
+        return exRep;
+    }
+
+    public static Summary getSmRep() {
+        return smRep;
+    }
+
+    public static Scene getScene() {
+        return scene;
+    }
 }

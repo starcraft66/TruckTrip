@@ -100,6 +100,7 @@ public class UserDao {
                 trip.setState(rs.getString("state"));
                 trip.setModel(rs.getString("model"));
                 trip.setColor(rs.getString("color"));
+                trip.setTotalExpense(trip.getGasPrice()*trip.getGasPurchased());
                 trips.add(trip);
             }
         } catch (SQLException e) {
@@ -129,6 +130,7 @@ public class UserDao {
                 trip.setState(rs.getString("state"));
                 trip.setModel(rs.getString("model"));
                 trip.setColor(rs.getString("color"));
+                trip.setTotalExpense(trip.getGasPrice()*trip.getGasPurchased());
                 trips.add(trip);
             }
         } catch (SQLException e) {
@@ -160,6 +162,7 @@ public class UserDao {
                 trip.setState(rs.getString("state"));
                 trip.setModel(rs.getString("model"));
                 trip.setColor(rs.getString("color"));
+                trip.setTotalExpense(trip.getGasPrice()*trip.getGasPurchased());
             }
         } catch (SQLException e) {
             e.printStackTrace();

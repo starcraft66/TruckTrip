@@ -20,24 +20,20 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Summary extends Application{
+public class Summary {
+    final static UserDao dao = new UserDao();
 
-    private TableView table = new TableView();
+    private static TableView table = new TableView();
     private final ObservableList<TruckTrip> data =
             FXCollections.observableArrayList(
-
+                    dao.getAllTrips()
             );
-    private Scene summaryScene;
+    private static Scene scene;
 
     final HBox hb = new HBox();
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage stage) {
-        summaryScene = new Scene(new Group());
+    public void init(Stage stage) {
+        scene = new Scene(new Group());
         stage.setTitle("Summary Trip");
         stage.setWidth(1070);
         stage.setHeight(500);
@@ -149,7 +145,19 @@ public class Summary extends Application{
             }
         });
 
-        hb.getChildren().addAll(addTruckNumber, addDriverNumber,addTripNumber, addDepartureTime, addReturnTime, addMileage, addTotalExpenses, addState, addButton);
+        final Button main = new Button("MainReport");
+        main.setOnAction(e -> {
+            stage.setScene(Main.getScene());
+            table.setItems(data);
+        });
+
+        final Button exception = new Button("ExceptionReport");
+        exception.setOnAction(e -> {
+            stage.setScene(Main.getExRep().getScene());
+            table.setItems(data);
+        });
+
+        hb.getChildren().addAll(addTruckNumber, addDriverNumber,addTripNumber, addDepartureTime, addReturnTime, addMileage, addTotalExpenses, addState, addButton, main, exception);
         hb.setSpacing(3);
 
         final VBox vbox = new VBox();
@@ -157,14 +165,16 @@ public class Summary extends Application{
         vbox.setPadding(new Insets(10, 0, 0, 10));
         vbox.getChildren().addAll(label, table, hb);
 
-        ((Group) summaryScene.getRoot()).getChildren().addAll(vbox);
+        ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
-        stage.setScene(summaryScene);
+        stage.setScene(scene);
         stage.show();
     }
 
-    public Scene getScene(){
-        return  summaryScene;
+    public static Scene getScene() {
+        table.setItems(FXCollections.observableArrayList(
+                dao.getAllTrips()
+        ));
+        return scene;
     }
-
 }

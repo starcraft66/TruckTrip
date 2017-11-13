@@ -20,7 +20,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Exception extends Application{
+public class Exception{
     final UserDao dao = new UserDao();
 
     private TableView table = new TableView();
@@ -29,22 +29,17 @@ public class Exception extends Application{
                     dao.getExceptionTrips()
             );
 
-    private Scene scene;
+    private Scene exceptionScene;
 
     final HBox hb = new HBox();
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage stage) {
-        scene = new Scene(new Group());
-        stage.setTitle("Summary Trip");
+    public void init(Stage stage) {
+        exceptionScene = new Scene(new Group());
+        stage.setTitle("Exception Trip");
         stage.setWidth(1070);
         stage.setHeight(500);
 
-        final Label label = new Label("Summary Trip");
+        final Label label = new Label("Exception Trip");
         label.setFont(new Font("Arial", 20));
 
         table.setEditable(true);
@@ -159,7 +154,19 @@ public class Exception extends Application{
             }
         });
 
-        hb.getChildren().addAll(addTruckNumber, addDriverNumber,addTripNumber,addMileage,addGasUsed, addGasPurchased, addGasPrice, addTotalExpenses, addState, addButton);
+        final Button main = new Button("MainReport");
+        main.setOnAction(e -> {
+            stage.setScene(Main.getScene());
+            table.setItems(data);
+        });
+
+        final Button summary = new Button("SummaryReport");
+        summary.setOnAction(e -> {
+            stage.setScene(Main.getSmRep().getScene());
+            table.setItems(data);
+        });
+
+        hb.getChildren().addAll(addTruckNumber, addDriverNumber,addTripNumber,addMileage,addGasUsed, addGasPurchased, addGasPrice, addTotalExpenses, addState, addButton, main, summary);
         hb.setSpacing(3);
 
         final VBox vbox = new VBox();
@@ -167,14 +174,17 @@ public class Exception extends Application{
         vbox.setPadding(new Insets(10, 0, 0, 10));
         vbox.getChildren().addAll(label, table, hb);
 
-        ((Group) scene.getRoot()).getChildren().addAll(vbox);
+        ((Group) exceptionScene.getRoot()).getChildren().addAll(vbox);
 
-        stage.setScene(scene);
+        stage.setScene(exceptionScene);
         stage.show();
     }
 
     public Scene getScene(){
-        return scene;
+        table.setItems(FXCollections.observableArrayList(
+                dao.getExceptionTrips()
+        ));
+        return exceptionScene;
     }
 
 }
